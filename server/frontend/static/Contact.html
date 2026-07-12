@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+  </head>
+  <body>
+    <div>
+      <!-- Navigation Bar -->
+      <nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; height: 1in;">
+        <div class="container-fluid">
+          <h2 style="padding-right: 5%;">Dealerships</h2>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" style="font-size: larger;" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" style="font-size: larger;" href="/about">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" style="font-size: larger;" href="/contact">Contact Us</a>
+            </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Contact Form -->
+      <div class="card">
+        <h1>Contact Us</h1>
+        <form>
+          <div class="form_panel" style="background-color:white; text-align:left;>
+            <label for="FirstName">First Name</label>
+            <input type="text" name="FirstName" required />
+            <label for="LastName">Last Name</label>
+            <input type="text" name="LastName" required />
+            <label for="Email">Email</label>
+            <input type="email" name="Email" required />
+            <label for="PhoneNumber">Phone Number</label>
+            <input type="tel" name="PhoneNumber" required />
+            <label for="YourMessage">Your Message</label>
+            <textarea id="YourMessage" name="YourMessage" maxLength="500"></textarea>
+            <caption>Characters left: <span id="RemainingCount" style="white-space: nowrap;">500</span></caption>
+          </div>
+          <button type="submit" style="">Send</button>
+        </form>
+      </div>
+
+      <script>
+        const yourMessage = document.getElementById("YourMessage");
+        const remainingCount = document.getElementById("RemainingCount");
+        const maxLength = 500;
+  
+        yourMessage.addEventListener('input', function() {
+          const currentLength = yourMessage.value.length
+          const remaining = maxLength - currentLength
+  
+          remainingCount.textContent = remaining
+        })
+      </script>
+    </div>
+  </body>
+</html>
