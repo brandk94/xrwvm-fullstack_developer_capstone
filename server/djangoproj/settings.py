@@ -69,7 +69,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [   # Directories where engine looks for template source files
-
+        
             os.path.join(BASE_DIR, 'frontend/static'),
             os.path.join(BASE_DIR, 'frontend/build'),   # Directory where Django recognizes frontend
             os.path.join(BASE_DIR, 'frontend/build/static'),
