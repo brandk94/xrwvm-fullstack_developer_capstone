@@ -30,11 +30,11 @@ DEBUG = True
 
 # List of strings representing host/domain names this Django site allows.
 # Set up as security measure to prevent HTTP Host Header attacks.
-ALLOWED_HOSTS = ['localhost', 'https://brandontkenn-8000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai/']
+ALLOWED_HOSTS = ['localhost', 'https://brandontkenn-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/']
 
 # List of hosts trusted for unsafe requests. CSRF protection requires that
 # each request consist of a Referer header matching origin present in Host header.
-CSRF_TRUSTED_ORIGINS = ['https://brandontkenn-8000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai']
+CSRF_TRUSTED_ORIGINS = ['https://brandontkenn-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai']
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [],
