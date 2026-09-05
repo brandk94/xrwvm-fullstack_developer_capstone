@@ -11,14 +11,15 @@ sentiment_analyzer_url = os.getenv(
     'sentiment_analyzer_url',
     default="http://localhost:5050/")
 
-# Invoke a GET request using a URL endpoint and associated parameters
+# Invoke HTTP requests from the Django environment
 def get_request(endpoint, **kwargs):
+
+    # Parse all keyword arguments, add them as parameters to end of request URL
     params = ""
     if(kwargs):
-        for key,value in kwargs.items():
+        for key, value in kwargs.items():
             params = params + key + "=" + value + "&"
-
-    request_url = backend_url + endpoints + "?" + params
+    request_url = backend_url + endpoint + "?" + params
 
     print("GET from {} ".format(request_url))
     try:
@@ -29,24 +30,25 @@ def get_request(endpoint, **kwargs):
         # If any error occurs
         print("Network exception occurred")
 
-# Use sentiment analyzer URL to review text with built-in NLTK library
+# Request NLKT microservice for sentiment analysis on provided text
 def analyze_review_sentiments(text):
+    
+    # Sentiment analyzer URL appended with provided text to analyze
     request_url = sentiment_analyzer_url+"analyze/"+text
     try:
         # Call get method of requests library with URL and parameters
         response = requests.get(request_url)
         return response.json()
     except Exception as err:
-        # If error occurs during request call
         print(f"Unexpected {err=}, {type(err)=}")
         print("Network exception occurred")
 
+# POST request for adding new review
 def post_review(data_dict):
-    request_url = backend_url+"/insert_review"
+    request_url = backend_url + "/insert_review"
     try:
         response = requests.post(request_url, json=data_dict)
         print(response.json())
         return response.json()
     except:
         print("Network exception occurred")
-        

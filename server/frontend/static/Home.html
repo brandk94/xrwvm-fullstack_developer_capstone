@@ -6,24 +6,31 @@
   <link rel="stylesheet" href="static/bootstrap.min.css">
 <script>
 
+// Handle logout functionality
 const logout = async (e) => {
-  let logout_url = window.location.origin+"/djangoapp/logout";
-  const res = await fetch(logout_url, {
-    method: "GET",
-  });
 
-  const json = await res.json();
-  if (json) {
-    // Clear session storage and reload page
-    let username = sessionStorage.getItem('username');
-    sessionStorage.removeItem('username');
-    window.location.href = window.location.origin;
-    window.location.reload();
-      // Notify user of logout
-    alert("Logging out " + username + "...");
-  } else {
-    alert("The user could not be logged out.");
-  }
+    // Logout endpoint URL
+    let logout_url = window.location.origin+"/djangoapp/logout";
+
+    // Make GET request to logout endpoint
+    const res = await fetch(logout_url, {
+        method: "GET",
+    });
+    const json = await res.json();
+
+    // If request successful, logout user using JSON session payload
+    if (json) {
+        // Clear session storage and reload page
+        let username = sessionStorage.getItem('username');
+        sessionStorage.removeItem('username');
+        window.location.href = window.location.origin;
+        window.location.reload();
+        // Notify user of logout
+        alert("Logging out " +username+ "...")
+    } else {
+        // If request fails, notify user logout failed.
+        alert("The user could not be logged out.")
+    }
 };
 
 let checkSession = ()=>{

@@ -46,6 +46,7 @@ const Register = () => {
         window.location.href = window.location.origin;
     }
     else if (json.error === "Already Registered") {
+    // Notify username already exists in registry and reload home
       alert("The user with same username is already registered");
       window.location.href = window.location.origin;
     }

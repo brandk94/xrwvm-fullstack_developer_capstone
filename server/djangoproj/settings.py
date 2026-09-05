@@ -28,7 +28,12 @@ SECRET_KEY =\
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'https://brandontkenn-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai', '127.0.0.1']
+# List of strings representing host/domain names this Django site allows.
+# Set up as security measure to prevent HTTP Host Header attacks.
+ALLOWED_HOSTS = ['localhost', 'https://brandontkenn-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/']
+
+# List of hosts trusted for unsafe requests. CSRF protection requires that
+# each request consist of a Referer header matching origin present in Host header.
 CSRF_TRUSTED_ORIGINS = ['https://brandontkenn-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai']
 
 REST_FRAMEWORK = {
@@ -58,12 +63,15 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'djangoproj.urls'
 
+# Settings for all template engines used in Django. Each item
+# contains options for an individual engine.
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
+        'DIRS': [   # Directories where engine looks for template source files
+        
             os.path.join(BASE_DIR, 'frontend/static'),
-            os.path.join(BASE_DIR, 'frontend/build'),
+            os.path.join(BASE_DIR, 'frontend/build'),   # Directory where Django recognizes frontend
             os.path.join(BASE_DIR, 'frontend/build/static'),
         ],
         'APP_DIRS': True,
@@ -138,8 +146,9 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Directories for Django app to traverse in search of static files
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'frontend/static'),
-    os.path.join(BASE_DIR, 'frontend/build'),
+	os.path.join(BASE_DIR, 'frontend/build'),
 	os.path.join(BASE_DIR, 'frontend/build/static'),
 ]
