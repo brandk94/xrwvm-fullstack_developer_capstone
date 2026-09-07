@@ -1,8 +1,6 @@
 # Uncomment the required imports before adding the code
 
-from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
-from django.shortcuts import render
 from django.contrib.auth import logout
 
 from django.http import JsonResponse
@@ -41,7 +39,7 @@ def login_user(request):
 # Create a `logout_request` view to handle sign out request
 def logout_request(request):
     logout(request)  # Terminate user session
-    data = {"userName":""} # Return empty user
+    data = {"userName": ""}  # Return empty user
     return JsonResponse(data)
 
 
@@ -56,15 +54,15 @@ def registration(request):
     last_name = data['lastName']
     email = data['email']
     username_exist = False
-    email_exist = False
 
     try:
         # Check if username already exists in user registry list
         User.objects.get(username=username)
         username_exist = True
-    except Exception as e:
+    except Exception as err:
         # If not, log this is a new user
         logger.debug("{} is new user".format(username))
+        print(f"Unexpected {err=}, {type(err)=}")
 
     # Add username to registry list if not already in
     if not username_exist:
@@ -84,7 +82,7 @@ def registration(request):
 # Render the index page with list of car models
 def get_cars(request):
 
-    # Get count of car models, if zero then 
+    # Get count of car models, if zero then
     # populate CarModel table with pre-existing data
     count = CarMake.objects.filter().count()
     print(count)
@@ -95,8 +93,8 @@ def get_cars(request):
     car_models = CarModel.objects.select_related('car_make')
     cars = []
     for car_model in car_models:
-        cars.append({"CarModel": car_model.name, 
-          "CarMake": car_model.car_make.name})
+        cars.append({"CarModel": car_model.name,
+            "CarMake": car_model.car_make.name})
     return JsonResponse({"CarModels": cars})
 
 
@@ -145,8 +143,8 @@ def add_review(request):
             # Display response from request and return success message
             post_review(data)
             return JsonResponse({"status": 200})
-        except Exception as e:
-            return JsonResponse({"status": 401, 
-              "message": "Error in posting review"})
+        except Exception as err:
+            return JsonResponse({"status": 401,
+                "message": err})
     else:
         return JsonResponse({"status": 403, "message": "Unauthorized"})
