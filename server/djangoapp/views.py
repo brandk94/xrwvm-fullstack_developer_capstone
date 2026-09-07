@@ -93,7 +93,8 @@ def get_cars(request):
     car_models = CarModel.objects.select_related('car_make')
     cars = []
     for car_model in car_models:
-        cars.append({"CarModel": car_model.name,
+        cars.append({
+            "CarModel": car_model.name,
             "CarMake": car_model.car_make.name})
     return JsonResponse({"CarModels": cars})
 
@@ -144,7 +145,8 @@ def add_review(request):
             post_review(data)
             return JsonResponse({"status": 200})
         except Exception as err:
-            return JsonResponse({"status": 401,
+            return JsonResponse({
+                "status": 401,
                 "message": err})
     else:
         return JsonResponse({"status": 403, "message": "Unauthorized"})

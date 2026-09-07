@@ -30,7 +30,8 @@ DEBUG = True
 
 # List of strings representing host/domain names this Django site allows.
 # Set up as security measure to prevent HTTP Host Header attacks.
-ALLOWED_HOSTS = ['localhost',
+ALLOWED_HOSTS = [
+    'localhost',
     'https://brandontkenn-8000.theiadockernext-1-labs-'
     'prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/']
 
