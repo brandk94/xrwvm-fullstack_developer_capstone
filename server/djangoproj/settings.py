@@ -30,11 +30,18 @@ DEBUG = True
 
 # List of strings representing host/domain names this Django site allows.
 # Set up as security measure to prevent HTTP Host Header attacks.
-ALLOWED_HOSTS = ['localhost', 'https://brandontkenn-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/']
+ALLOWED_HOSTS = ['localhost', 
+  'https://brandontkenn-8000.theiadockernext-1-labs-'
+  'prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/'
+]
 
-# List of hosts trusted for unsafe requests. CSRF protection requires that
-# each request consist of a Referer header matching origin present in Host header.
-CSRF_TRUSTED_ORIGINS = ['https://brandontkenn-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai']
+# List of hosts trusted for unsafe requests. 
+# CSRF protection requires each request consists of 
+# Referer header matching origin present in Host header.
+CSRF_TRUSTED_ORIGINS = [
+  'https://brandontkenn-8000.theiadockernext-1-labs-'
+  'prod-theiak8s-4-tor01.proxy.cognitiveclass.ai'
+]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [],
@@ -69,9 +76,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [   # Directories where engine looks for template source files
-        
             os.path.join(BASE_DIR, 'frontend/static'),
-            os.path.join(BASE_DIR, 'frontend/build'),   # Directory where Django recognizes frontend
+            os.path.join(BASE_DIR, 'frontend/build'),
             os.path.join(BASE_DIR, 'frontend/build/static'),
         ],
         'APP_DIRS': True,
@@ -102,7 +108,8 @@ DATABASES = {
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME':
-        'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'django.contrib.auth.password_validation.'
+        'UserAttributeSimilarityValidator',
     },
     {
         'NAME':
@@ -149,6 +156,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Directories for Django app to traverse in search of static files
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'frontend/static'),
-	os.path.join(BASE_DIR, 'frontend/build'),
-	os.path.join(BASE_DIR, 'frontend/build/static'),
+    os.path.join(BASE_DIR, 'frontend/build'),
+    os.path.join(BASE_DIR, 'frontend/build/static'),
 ]
